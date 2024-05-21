@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   isalpha.c                                          :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etienne <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: etessier <etessier@student.42paris.fr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/21 09:37:05 by etienne           #+#    #+#             */
-/*   Updated: 2024/03/21 09:56:38 by etienne          ###   ########.fr       */
+/*   Created: 2024/05/21 10:35:29 by etessier          #+#    #+#             */
+/*   Updated: 2024/05/21 17:46:45 by etessier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isalpha(int c)
+#include "libft.h"
+
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	if (c >= 'a' && c <= 'z')
-		return (1);
-	else if (c >= 'A' && c <= 'Z')
-		return (2);
-	else
-		return (0);
+	new->next = *lst;
+	*lst = new;
 }

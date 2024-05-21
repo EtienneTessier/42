@@ -6,12 +6,20 @@
 /*   By: etessier <etessier@>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 13:43:50 by etienne           #+#    #+#             */
-/*   Updated: 2024/04/18 16:57:29 by etienne          ###   ########.fr       */
+/*   Updated: 2024/05/21 18:05:38 by etessier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+
+# include <stddef.h>
+
+typedef struct s_list
+{
+	void			*content;
+	struct s_list	*next;
+}	t_list;
 
 int		ft_isalpha(int c);
 
@@ -27,7 +35,7 @@ int		ft_toupper(int c);
 
 int		ft_tolower(int c);
 
-int		ft_strlen(char *str);
+int		ft_strlen(const char *str);
 
 int		ft_atoi(const char *str);
 
@@ -80,5 +88,13 @@ void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
+
+void	ft_lstadd_front(t_list **lst, t_list *new);
+
+t_list	*ft_lstnew(void *content);
+
+t_list	*ft_lstlast(t_list *lst);
+
+int		ft_lstsize(t_list *lst);
 
 #endif

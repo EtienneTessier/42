@@ -11,18 +11,23 @@
 /* ************************************************************************** */
 
 #include <stddef.h>
+#include <stdio.h>
 
 char	*ft_strnstr(const char *str, const char *to_find, size_t len)
 {
 	size_t	i;
 	size_t	j;
+	size_t	k;
 	char	*temp;
 
 	temp = (char *)str;
 	i = 0;
-	if (!to_find)
+	if (to_find[0] == '\0')
 		return (temp);
-	while (str[i] != '\0' && i < len)
+	k = 0;
+	while (to_find[k])
+		k++;
+	while (str[i] != '\0' && i + k <= len)
 	{
 		j = 0;
 		while (str[i + j] == to_find[j])
@@ -33,5 +38,5 @@ char	*ft_strnstr(const char *str, const char *to_find, size_t len)
 		}
 		i++;
 	}
-	return (0);
+	return (NULL);
 }

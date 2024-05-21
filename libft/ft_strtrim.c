@@ -11,16 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
-
-static int	ft_strlen(const char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
-}
+#include "libft.h"
 
 static int	ft_is_set(char c, const char *set)
 {
@@ -36,42 +27,18 @@ static int	ft_is_set(char c, const char *set)
 	return (0);
 }
 
-static int	ft_count_set(const char *str, const char *set)
-{
-	int	i;
-	int	set_count;
-
-	i = 0;
-	set_count = 0;
-	while (str[i] != '\0')
-	{
-		if (ft_is_set(str[i], set))
-			set_count++;
-		i++;
-	}
-	return (set_count);
-}
-
 char	*ft_strtrim(const char *s1, const char *set)
 {
-	int		i;
-	int		j;
-	char	*trim;
+	size_t		start;
+	size_t		end;
+	size_t		size;
 
-	trim = malloc(sizeof(char) * (ft_strlen(s1) - (ft_count_set(s1, set)) + 1));
-	if (!trim)
-		return (NULL);
-	i = 0;
-	j = 0;
-	while (s1[i] != '\0')
-	{
-		if (!ft_is_set(s1[i], set))
-		{
-			trim[j] = s1[i];
-			j++;
-		}
-		i++;
-	}
-	trim[j] = '\0';
-	return (trim);
+	start = 0;
+	end = 0;
+	size = ft_strlen(s1);
+	while (s1[start] && ft_is_set(s1[start], set))
+		start++;
+	while (s1[size - end - 1] && ft_is_set(s1[size - end - 1], set))
+		end++;
+	return (ft_substr(s1, start, size - (start + end)));
 }

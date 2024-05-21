@@ -10,16 +10,18 @@ CC	= gcc
 
 CFLAGS	= -Wall -Wextra -Werror
 
+AR = ar rcs
+
 all: $(NAME)
 
-$(NAME): $(OBJ) $(INCLUDES)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+$(NAME): $(OBJ)
+	$(AR) $(NAME) $(OBJ) 
 
 clean:
 	rm -f $(OBJ)
 
-fclean:
-	clean rm -f $(NAME)
+fclean:	clean
+	rm -f $(NAME)
 
 re: fclean all
 

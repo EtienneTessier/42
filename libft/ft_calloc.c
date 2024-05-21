@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <stdint.h>
 
 void	*ft_calloc(size_t nb, size_t size)
 {
@@ -18,15 +19,20 @@ void	*ft_calloc(size_t nb, size_t size)
 	unsigned char	*str;
 
 	i = 0;
-	if (nb < 1 || size < 1)
+	if (nb * size > SIZE_MAX || size > SIZE_MAX)
 	{
 		str = malloc(1);
-		return (str);
+		return ((void *)str);
+	}
+	if (nb == 0 || size == 0)
+	{
+		str = malloc(1);
+		return ((void *)str);
 	}
 	str = malloc(nb * size);
 	if (!str)
 		return (NULL);
-	while (i < nb)
+	while (i < nb * size)
 	{
 		str[i] = 0;
 		i++;
