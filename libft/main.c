@@ -6,7 +6,7 @@
 /*   By: etessier <etessier@>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 13:58:47 by etienne           #+#    #+#             */
-/*   Updated: 2024/04/18 17:06:42 by etessier         ###   ########.fr       */
+/*   Updated: 2024/05/22 14:43:33 by etessier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -304,8 +304,8 @@ int	main(void)
 
 	// ft_split
 	printf("\nft_split :\n");
-	char **splited1 = ft_split("bonjour je suis etienne", ' ');
-	printf("\"bonjour je suis etienne\", ' ' :\n");
+	char **splited1 = ft_split(NULL, 'c');
+	printf("\"null\", 'c' :\n");
 	for(int i = 0; splited1[i]; i++)
 	{
 		printf("%d : %s\n", i, splited1[i]);

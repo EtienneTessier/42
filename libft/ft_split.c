@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include "libft.h"
 
 static int	ft_is_sep(char to_test, char sep)
 {
@@ -41,16 +42,6 @@ static int	ft_count_parts(char const *s, char c)
 	return (word_count);
 }
 
-static int	ft_wordlen(const char *s, char c)
-{
-	int	i;
-
-	i = 0;
-	while (!ft_is_sep(s[i], c))
-		i++;
-	return (i);
-}
-
 static char	*ft_split_word(char const *s, char c, int *i)
 {
 	int		j;
@@ -58,7 +49,9 @@ static char	*ft_split_word(char const *s, char c, int *i)
 	char	*dest;
 
 	j = 0;
-	word_len = ft_wordlen(s, c);
+	word_len = 0;
+	while (!ft_is_sep(s[word_len], c))
+		word_len++;
 	dest = malloc(sizeof(char) * (word_len + 1));
 	if (!dest)
 		return (NULL);
@@ -72,6 +65,19 @@ static char	*ft_split_word(char const *s, char c, int *i)
 		j++;
 	*i += j;
 	return (dest);
+}
+
+static void	ft_freesplit(char **splited)
+{
+	int	i;
+
+	i = 0;
+	while (splited[i])
+	{
+		free(splited[i]);
+		i++;
+	}
+	free(splited);
 }
 
 char	**ft_split(char const *s, char c)
@@ -92,8 +98,10 @@ char	**ft_split(char const *s, char c)
 	while (j < nb_words)
 	{
 		splited[j] = ft_split_word(&s[i], c, &i);
+		if (!splited[j])
+			return (ft_freesplit(splited), NULL);
 		j++;
 	}
-	splited[j] = '\0';
+	splited[j] = NULL;
 	return (splited);
 }

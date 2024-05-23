@@ -10,26 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
-
-static int	ft_strlen_bis(char const *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i] != '\0')
-		i++;
-	return (i);
-}
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	int		i;
-	int		s_len;
-	char	*mapied;
+	size_t		i;
+	size_t		s_len;
+	char		*mapied;
 
-	s_len = ft_strlen_bis(s);
+	s_len = ft_strlen(s);
 	mapied = malloc (sizeof(char) * (s_len + 1));
 	if (!mapied)
 		return (NULL);
