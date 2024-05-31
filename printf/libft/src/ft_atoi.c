@@ -1,33 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: etienne <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/10 10:10:27 by etienne           #+#    #+#             */
-/*   Updated: 2024/04/10 10:15:55 by etienne          ###   ########.fr       */
+/*   Created: 2024/04/08 14:56:23 by etienne           #+#    #+#             */
+/*   Updated: 2024/04/08 15:08:09 by etienne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-char	*ft_strdup(const char *str)
+int	ft_atoi(const char *str)
 {
-	char	*dup;
-	size_t	str_len;
-	int		i;
+	int	i;
+	int	sign;
+	int	result;
 
-	str_len = ft_strlen(str);
-	dup = malloc (sizeof(char) * (str_len + 1));
-	if (!dup)
-		return (NULL);
 	i = 0;
-	while (str[i] != '\0')
+	sign = 1;
+	result = 0;
+	while ((str[i] >= '\t' && str[i] <= '\r') || str[i] == ' ')
+		i++;
+	if (str[i] == '+' || str[i] == '-')
 	{
-		dup[i] = str[i];
+		if (str[i] == '-')
+			sign *= -1;
 		i++;
 	}
-	dup[i] = '\0';
-	return (dup);
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		result = (result * 10) + (str[i] - '0');
+		i++;
+	}
+	return (result * sign);
 }

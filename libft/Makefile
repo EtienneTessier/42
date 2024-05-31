@@ -65,7 +65,7 @@ bonus: $(OBJ_B)
 	$(AR) $(NAME) $(OBJ_B)
 
 clean:
-	rm -f $(OBJ)
+	rm -f $(OBJ) $(OBJ_B)
 
 fclean:	clean
 	rm -f $(NAME)

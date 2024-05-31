@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: etienne <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/10 10:10:27 by etienne           #+#    #+#             */
-/*   Updated: 2024/04/10 10:15:55 by etienne          ###   ########.fr       */
+/*   Created: 2024/04/18 16:27:02 by etienne           #+#    #+#             */
+/*   Updated: 2024/04/18 16:36:20 by etienne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/libft.h"
 
-char	*ft_strdup(const char *str)
+void	ft_putendl_fd(char *s, int fd)
 {
-	char	*dup;
-	size_t	str_len;
 	int		i;
+	char	nl;
 
-	str_len = ft_strlen(str);
-	dup = malloc (sizeof(char) * (str_len + 1));
-	if (!dup)
-		return (NULL);
+	nl = '\n';
 	i = 0;
-	while (str[i] != '\0')
+	while (s[i] != '\0')
 	{
-		dup[i] = str[i];
+		write(fd, &s[i], 1);
 		i++;
 	}
-	dup[i] = '\0';
-	return (dup);
+	write(fd, &nl, 1);
 }

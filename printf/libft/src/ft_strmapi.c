@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: etienne <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/10 10:10:27 by etienne           #+#    #+#             */
-/*   Updated: 2024/04/10 10:15:55 by etienne          ###   ########.fr       */
+/*   Created: 2024/04/17 15:54:11 by etienne           #+#    #+#             */
+/*   Updated: 2024/04/17 17:05:19 by etienne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/libft.h"
 
-char	*ft_strdup(const char *str)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char	*dup;
-	size_t	str_len;
-	int		i;
+	size_t		i;
+	size_t		s_len;
+	char		*mapied;
 
-	str_len = ft_strlen(str);
-	dup = malloc (sizeof(char) * (str_len + 1));
-	if (!dup)
+	s_len = ft_strlen(s);
+	mapied = malloc (sizeof(char) * (s_len + 1));
+	if (!mapied)
 		return (NULL);
 	i = 0;
-	while (str[i] != '\0')
+	while (i < s_len)
 	{
-		dup[i] = str[i];
+		mapied[i] = (*f)(i, s[i]);
 		i++;
 	}
-	dup[i] = '\0';
-	return (dup);
+	mapied[i] = '\0';
+	return (mapied);
 }

@@ -1,33 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: etienne <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/10 10:10:27 by etienne           #+#    #+#             */
-/*   Updated: 2024/04/10 10:15:55 by etienne          ###   ########.fr       */
+/*   Created: 2024/04/08 14:24:07 by etienne           #+#    #+#             */
+/*   Updated: 2024/04/08 14:54:42 by etienne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/libft.h"
 
-char	*ft_strdup(const char *str)
+char	*ft_strnstr(const char *str, const char *to_find, size_t len)
 {
-	char	*dup;
-	size_t	str_len;
-	int		i;
+	size_t	i;
+	size_t	j;
+	size_t	k;
+	char	*temp;
 
-	str_len = ft_strlen(str);
-	dup = malloc (sizeof(char) * (str_len + 1));
-	if (!dup)
-		return (NULL);
+	temp = (char *)str;
 	i = 0;
-	while (str[i] != '\0')
+	if (to_find[0] == '\0')
+		return (temp);
+	k = 0;
+	while (to_find[k])
+		k++;
+	while (str[i] != '\0' && i + k <= len)
 	{
-		dup[i] = str[i];
+		j = 0;
+		while (str[i + j] == to_find[j])
+		{
+			if (to_find[j + 1] == '\0')
+				return (&temp[i]);
+			j++;
+		}
 		i++;
 	}
-	dup[i] = '\0';
-	return (dup);
+	return (NULL);
 }

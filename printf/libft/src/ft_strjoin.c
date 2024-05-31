@@ -1,33 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: etienne <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/10 10:10:27 by etienne           #+#    #+#             */
-/*   Updated: 2024/04/10 10:15:55 by etienne          ###   ########.fr       */
+/*   Created: 2024/04/10 13:40:52 by etienne           #+#    #+#             */
+/*   Updated: 2024/04/10 13:55:08 by etienne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/libft.h"
 
-char	*ft_strdup(const char *str)
+char	*ft_strjoin(const char *s1, const char *s2)
 {
-	char	*dup;
-	size_t	str_len;
 	int		i;
+	int		j;
+	char	*joined;
 
-	str_len = ft_strlen(str);
-	dup = malloc (sizeof(char) * (str_len + 1));
-	if (!dup)
+	joined = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!joined)
 		return (NULL);
 	i = 0;
-	while (str[i] != '\0')
+	while (s1[i] != '\0')
 	{
-		dup[i] = str[i];
+		joined[i] = s1[i];
 		i++;
 	}
-	dup[i] = '\0';
-	return (dup);
+	j = 0;
+	while (s2[j] != '\0')
+	{
+		joined[i + j] = s2[j];
+		j++;
+	}
+	joined[i + j] = '\0';
+	return (joined);
 }

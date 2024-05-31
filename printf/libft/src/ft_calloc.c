@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: etienne <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/10 10:10:27 by etienne           #+#    #+#             */
-/*   Updated: 2024/04/10 10:15:55 by etienne          ###   ########.fr       */
+/*   Created: 2024/04/08 15:14:06 by etienne           #+#    #+#             */
+/*   Updated: 2024/05/27 11:52:50 by etessier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/libft.h"
 
-char	*ft_strdup(const char *str)
+void	*ft_calloc(size_t nb, size_t size)
 {
-	char	*dup;
-	size_t	str_len;
-	int		i;
+	size_t			i;
+	unsigned char	*str;
 
-	str_len = ft_strlen(str);
-	dup = malloc (sizeof(char) * (str_len + 1));
-	if (!dup)
-		return (NULL);
+	if (nb == 0 || size == 0)
+		return (ft_strdup(""));
 	i = 0;
-	while (str[i] != '\0')
+	if (nb && size > (SIZE_MAX / size))
+		return (NULL);
+	str = malloc(nb * size);
+	if (!str)
+		return (NULL);
+	while (i < nb * size)
 	{
-		dup[i] = str[i];
+		str[i] = 0;
 		i++;
 	}
-	dup[i] = '\0';
-	return (dup);
+	return ((void *)str);
 }
